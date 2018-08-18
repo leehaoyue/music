@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人主页</title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	html,body {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+	}
+	h4 {
+		background: #fff;
+		text-indent: 20px;
+		line-height: 50px;
+	}
+	#map_inner,#introduce_inner {
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<body>
+	<!-- 个人简历 -->
+	<h4 id="introduce">个人简历&nbsp;<a href="#map">旅游日治</a></h4>
+	<embed id="introduce_inner" title="个人简历" src="introduce.pdf"></embed>
+	<!-- 旅游日治 -->
+	<h4 id="map"><a href="#introduce">个人简历</a>&nbsp;旅游日治</h4>
+	<div id="map_inner"></div>
+</body>
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=pxoraYzj7L89lC7mup893eekkBZew9jq"></script>
+	<script type="text/javascript">
+		$(function() {
+			var lng,lat;
+			var pointArray = new Array();
+			var map = new BMap.Map('map_inner')
+			map.centerAndZoom('银川',5);
+			// 点击获取坐标
+			function showInfo(e){
+				lng = e.point.lng;
+				lat = e.point.lat;
+			};
+			map.addEventListener('click', showInfo);
+			// 覆盖物事件
+			var marker_outer = new BMap.Marker();
+			marker_outer.addEventListener('click',attribute);
+			function attribute(e){
+				var p = e.target;
+				alert("marker的位置是" + p.getPosition().lng + "," + p.getPosition().lat);    
+			}	
+			// 右键事件
+			var menu = new BMap.ContextMenu();
+			var txtMenuItem = [
+				{
+					text:'添加日志',
+					callback:function(){
+						// 编写自定义函数,创建标注
+						function addMarker(point_inner){
+						  var marker_inner = new BMap.Marker(point_inner);
+						  map.addOverlay(marker_inner);
+						}
+						var bounds = map.getBounds();
+						var point_inner = new BMap.Point(lng,lat);
+						addMarker(point_inner);
+					}
+				},
+				{
+					text:'缩小',
+					callback:function(){map.zoomOut()}
+				}
+			];
+			for(var i=0; i < txtMenuItem.length; i++){
+				menu.addItem(new BMap.MenuItem(txtMenuItem[i].text,txtMenuItem[i].callback,100));
+			}
+			map.addContextMenu(menu);
+		})
+	</script>
+</html>
