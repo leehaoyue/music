@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Qs from 'qs';
 import Toast from 'muse-ui-toast';
-import Message from 'muse-ui-message';
 import NProgress from 'muse-ui-progress';
 import $server from './interfaceList.js';
 
