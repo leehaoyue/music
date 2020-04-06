@@ -1,0 +1,38 @@
+@import '../../../global/globalStyle.less';
+
+.nodata {
+  display: flex;
+  .col {
+    align-self: center;
+    text-align: center;
+    color: @grayScale-color_8;
+  }
+  .material-icons {
+    .threeD_text;
+    font-size: 5em;
+    animation: nodatarotate 2.5s linear infinite;
+  }
+  h1 {
+    .threeD_text;
+    margin: 0;
+    flex: 0 0 100%;
+    font-size: 2em;
+  }
+  @keyframes nodatarotate {
+    0% {
+      transform:rotate(-45deg);
+    }
+    25% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(45deg);
+    }
+    75% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-45deg);
+    }
+  }
+}
