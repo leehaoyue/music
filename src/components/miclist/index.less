@@ -1,0 +1,91 @@
+@import '../../global/globalStyle.less';
+
+.miclist {
+  .part {
+    position: relative;
+    img {
+      width: 15%;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+    .mu-appbar-title {
+      display: flex;
+      align-items: center;
+      .mu-badge-container {
+        margin-left: 0.5rem;
+        box-shadow: 2px 2px 2px @grayScale-color_2;
+      }
+    }
+  }
+  .swiper-container {
+    width: 50%;
+    display: inline-block;
+    &.single {
+      width: 100%;
+    }
+  }
+  .board {
+    width: 100%;
+  }
+  .list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 120px);
+    .mu-item-wrapper {
+      border-bottom: 1px solid @grayScale-color_5;
+    }
+    .mu-ripple-demo {
+      display: flex;
+      align-items: center;
+    }
+    .mu-badge {
+      margin: 1rem 0;
+    }
+    .mu-item-action, .mu-item-content {
+      z-index: 1;
+    }
+    .current {
+      animation: miclistrotate 5s linear infinite;
+    }
+    @keyframes miclistrotate {
+      from{ transform: rotate(0deg) }
+      to{ transform: rotate(359deg) }
+    }
+    .pausedBTN {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .soundBG {
+      position: absolute;
+      top: 0;
+      left: 60%;
+      z-index: 0;
+      width: 40%;
+      height: 100%;
+    }
+  }
+  .mu-paper {
+    .mu-list {
+      padding: 0;
+    }
+    .mu-item {
+      padding: 0;
+      height: calc(100vh / 10);
+    }
+    .mu-button {
+      width: 100%;
+      height: 100%;
+      font-size: 1.2em;
+      font-weight: 700;
+      letter-spacing: 0.2rem;
+    }
+  }
+}
